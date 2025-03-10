@@ -9,36 +9,18 @@ document.addEventListener('DOMContentLoaded', function () {
   // Set initial state
   let currentIndex = 0;
   const totalItems = carouselItems.length;
-
-  // Clone first and last items for infinite scrolling
-  function setupInfiniteLoop() {
-    // Clone the first item and add it to the end
-    const firstItemClone = carouselItems[0].cloneNode(true);
-    firstItemClone.classList.add('cloned');
-
-    // Clone the last item and add it to the beginning
-    const lastItemClone = carouselItems[totalItems - 1].cloneNode(true);
-    lastItemClone.classList.add('cloned');
-
-    // Append and prepend clones
-    carouselImages.appendChild(firstItemClone);
-    carouselImages.insertBefore(lastItemClone, carouselImages.firstChild);
-
-    // Adjust current index to account for the prepended item
-    currentIndex = 2 // Start at the first real item (after the clone)
-  }
+  let isAnimating = false;
 
   // Initialize carousel
   function initCarousel() {
-    // Set up infinite loop clones
-    setupInfiniteLoop();
-
     // Apply initial offset to center the first image
-    const centerOffset = (carousel.offsetWidth - carouselItems[0].offsetWidth) / 2;
-    carouselImages.style.paddingLeft = `${centerOffset}px`;
+    const itemWidth = carouselItems[0].offsetWidth;
+    const carouselWidth = carousel.offsetWidth;
+    const centerOffset = (carouselWidth - itemWidth) / 2;
+    // carouselImages.style.paddingLeft = `${centerOffset}px`;
 
     // Set initial position and active state
-    updateCarousel(false);
+    updateCarousel();
 
     // Add event listeners to buttons
     prevButton.addEventListener('click', goToPrev);
@@ -46,33 +28,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Handle window resize to maintain centering
     window.addEventListener('resize', function () {
-      const newCenterOffset = (carousel.offsetWidth - carouselItems[0].offsetWidth) / 2;
+      const newItemWidth = carouselItems[0].offsetWidth;
+      const newCarouselWidth = carousel.offsetWidth;
+      const newCenterOffset = (newCarouselWidth - newItemWidth) / 2;
       carouselImages.style.paddingLeft = `${newCenterOffset}px`;
-      updateCarousel(false);
+      updateCarousel();
     });
-
-    // Add transition end event for handling loop resets
-    carouselImages.addEventListener('transitionend', handleTransitionEnd);
   }
 
   // Update carousel position and active states
-  function updateCarousel(animate = true) {
-    // Get all items including clones
-    const allItems = document.querySelectorAll('.carousel-item');
-
-    // Set transition based on whether animation is desired
-    carouselImages.style.transition = animate ? 'transform 0.5s ease' : 'none';
-
-    // Calculate the translate value to center the current item
-    const itemWidth = 100 / 3; // Based on 33.333% item width
-    // Adjust for the extra clone at the beginning
+  function updateCarousel() {
+    // Calculate the translate value based on item width in pixels
+    const itemWidth = carouselItems[0].offsetWidth + 25; // Including the gap
     const translateX = -currentIndex * itemWidth;
-    carouselImages.style.transform = `translateX(${translateX}%)`;
+    carouselImages.style.transform = `translateX(${translateX}px)`;
 
-    // Update active states for images (accounting for clones)
-    allItems.forEach((item, index) => {
+    // Update active states for images
+    carouselItems.forEach((item, index) => {
       const image = item.querySelector('.carousel-image');
-      // Adjust index calculation to account for the clone offset
       if (index === currentIndex) {
         image.classList.add('active');
       } else {
@@ -81,33 +54,81 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // Handle the transition end event for infinite looping
-  function handleTransitionEnd() {
-    // Get all items including clones
-    const allItems = document.querySelectorAll('.carousel-item');
-    const totalWithClones = allItems.length;
-
-    // If we're at the clone before the first real item
-    if (currentIndex === 0) {
-      currentIndex = totalWithClones - 2; // Go to the real last item
-      updateCarousel(false);
-    }
-    // If we're at the clone after the last real item
-    else if (currentIndex === totalWithClones - 1) {
-      currentIndex = 1; // Go to the first real item
-      updateCarousel(false);
-    }
-  }
-
   // Navigation functions
   function goToPrev() {
-    currentIndex--;
-    updateCarousel(true);
+    if (isAnimating) return;
+
+    if (currentIndex === 0) {
+      // If at the first image, animate to the last image
+      animateToIndex(totalItems - 1);
+    } else {
+      currentIndex--;
+      updateCarousel();
+    }
   }
 
   function goToNext() {
-    currentIndex++;
-    updateCarousel(true);
+    if (isAnimating) return;
+
+    if (currentIndex === totalItems - 1) {
+      // If at the last image, animate to the first image
+      animateToIndex(0);
+    } else {
+      currentIndex++;
+      updateCarousel();
+    }
+  }
+
+  // Animate from current index to target index
+  function animateToIndex(targetIndex) {
+    isAnimating = true;
+
+    // Calculate the total translation distance
+    const itemWidth = carouselItems[0].offsetWidth + 25; // Including the gap
+    const startTranslate = -currentIndex * itemWidth;
+    let endTranslate;
+
+    if (currentIndex === totalItems - 1 && targetIndex === 0) {
+      // Animate from last to first
+      endTranslate = -(totalItems) * itemWidth; // Go one beyond the end
+    } else if (currentIndex === 0 && targetIndex === totalItems - 1) {
+      // Animate from first to last
+      endTranslate = itemWidth; // Go one before the beginning
+    }
+
+    // Create animation
+    const duration = 500; // ms
+    const startTime = performance.now();
+
+    function animate(time) {
+      const elapsed = time - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+
+      // Use easing function for smoother animation
+      const easeProgress = easeInOutCubic(progress);
+
+      // Calculate current position
+      const currentTranslate = startTranslate + (endTranslate - startTranslate) * easeProgress;
+      carouselImages.style.transform = `translateX(${currentTranslate}px)`;
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        // Animation complete, reset to actual target position
+        currentIndex = targetIndex;
+        updateCarousel();
+        isAnimating = false;
+      }
+    }
+
+    requestAnimationFrame(animate);
+  }
+
+  // Easing function for smoother animation
+  function easeInOutCubic(t) {
+    return t < 0.5
+      ? 4 * t * t * t
+      : 1 - Math.pow(-2 * t + 2, 3) / 2;
   }
 
   // Optional: Add swipe functionality for mobile
