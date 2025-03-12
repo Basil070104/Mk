@@ -53,7 +53,7 @@ const Carousel = ({
       </div>
 
       {/* Navigation buttons */}
-      <div className="mt-3 flex justify-center gap-4">
+      <div className=" flex justify-center gap-4">
         <button
           onClick={prevSlide}
           className=" px-4 py-2 font-bold hover:bg-gray-100 rounded-md"

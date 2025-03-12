@@ -10,7 +10,7 @@ interface PhotoProps {
 
 const Photo: React.FC<PhotoProps> = ({ src, alt, className = '' }) => {
   return (
-    <div className="relative w-sm aspect-[4/3] rounded-lg overflow-hidden bg-grey">
+    <div className="relative w-sm aspect-[4/3] rounded-lg overflow-hidden bg-grey shadow-xl">
       <Image
         src={src}
         alt={alt}

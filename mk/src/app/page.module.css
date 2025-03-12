@@ -66,6 +66,7 @@
   min-height: 100vh;
   height: fit-content;
   position: relative;
+  display: flex;
   background-image: url("../../public/images/val.png");
   background-attachment: fixed;
   background-position: center;
@@ -75,14 +76,14 @@
 
 .parallax_text {
   position: relative;
-  width: 30%;
+  width: fit-content;
   height: fit-content;
   color: white;
-  font-size: 1rem;
+  font-size: 2rem;
   animation: fadeIn 1.5s ease-in-out forwards;
   background-color: rgba(0, 0, 0, 0.5);
   padding: 20px;
-  border-radius: 5px;
+  border-radius: 10px;
   line-height: 1.6;
 }
 

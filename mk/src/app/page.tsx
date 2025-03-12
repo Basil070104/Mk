@@ -39,6 +39,30 @@ export default function Home() {
     }
   };
 
+  const [isSticky, setIsSticky] = useState(false);
+  const parallaxRef = useRef<HTMLDivElement>(null);
+  const videosRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (parallaxRef.current && videosRef.current) {
+        const parallaxBottom = parallaxRef.current.getBoundingClientRect().bottom;
+        const videosTop = videosRef.current.getBoundingClientRect().top;
+
+        if (parallaxBottom > videosTop) {
+          setIsSticky(false);
+        } else {
+          setIsSticky(true);
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
     <div>
       {/* Landing */}
@@ -64,23 +88,22 @@ export default function Home() {
 
       {/* Photos */}
       <div>
-        <div className={styles.parallax_image}
+        <div className={`${styles.parallax_image} ${isSticky ? 'sticky top-0 z-10' : ''}`}
+          ref={parallaxRef}
         >
-          <div>
-            <motion.div
-              className={styles.parallax_text}
-              initial="hidden"
-              animate={inView ? "visible" : "hidden"}
-              variants={variants}
-            >
-              He an thing rapid these after going drawn or. Timed she his law the spoil round defer.
-              In surprise concerns informed betrayed he learning is ye. Ignorant formerly so ye blessing.
-              He as spoke avoid given downs money on we. Of properly carriage shutters ye as wandered up repeated moreover.
-              Inquietude attachment if ye an solicitude to. Remaining so continued concealed as knowledge happiness.
-              Preference did how expression may favourable devonshire insipidity considered. An length design regret an hardly barton mr figure.
-            </motion.div>
-            <div className="p-10">
-              <div className="flex justify-around m-10">
+          <div className="w-full">
+            <div className="flex w-full justify-center align-middle">
+              <motion.div
+                className={`${styles.parallax_text} overflow-hidden`}
+                initial="hidden"
+                animate={inView ? "visible" : "hidden"}
+                variants={variants}
+              >
+                Photography
+              </motion.div>
+            </div>
+            <div className="p-10 w-full">
+              <div className="flex justify-around my-10 w-full">
                 <Photo
                   src="/images/face.png"
                   alt="temp image"
@@ -94,7 +117,7 @@ export default function Home() {
                   alt="temp image"
                 />
               </div>
-              <div className="flex justify-around m-10">
+              <div className="flex justify-around my-10">
                 <Photo
                   src="/images/face.png"
                   alt="temp image"
@@ -108,7 +131,20 @@ export default function Home() {
                   alt="temp image"
                 />
               </div>
-
+              <div className="flex justify-around my-10">
+                <Photo
+                  src="/images/face.png"
+                  alt="temp image"
+                />
+                <Photo
+                  src="/images/face.png"
+                  alt="temp image"
+                />
+                <Photo
+                  src="/images/face.png"
+                  alt="temp image"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -116,10 +152,12 @@ export default function Home() {
 
 
       {/* Videos */}
-      <div className={styles.videos}>
+      <div className={styles.videos}
+        ref={videosRef}
+      >
         <div className={styles.videos_text}>
           <div>
-            Videos
+            Cinematography
           </div>
           <div className={styles.videos_line}></div>
         </div>
