@@ -1,0 +1,386 @@
+.body {
+  background-color: white;
+  max-height: 100vh;
+  min-height: 100vh;
+  height: 100vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  margin: 0;
+  /* scroll-snap-type: y mandatory; */
+  /* font-family: 'Arial', sans-serif; */
+}
+
+/* Landing Start */
+
+.landing {
+  display: grid;
+  min-height: 100vh;
+  width: 100vw;
+  grid-template-columns: repeat(2, 1fr);
+  margin: 20px;
+}
+
+.landing_text {
+  font-size: 12rem;
+  animation: fadeIn 1.5s ease-in-out forwards;
+  /* font-weight: bold; */
+}
+
+.line_landing {
+  width: 100%;
+  height: 2.5px;
+  background-color: black;
+  animation: lineExpand 1.5s ease-in-out forwards;
+}
+
+.text_container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  margin: 60px;
+}
+
+.landing_image {
+  height: 100%;
+  animation: scaleIn 1.5s ease-in-out forwards;
+  object-fit: cover;
+}
+
+.landing_image_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+/* Landing End */
+
+/* Parallax Start */
+
+.parallax_image {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  background-image: url("../../public/images/val.png");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.parallax_text {
+  position: absolute;
+  top: 50px;
+  left: 20px;
+  width: 30%;
+  color: white;
+  font-size: 1rem;
+  animation: fadeIn 1.5s ease-in-out forwards;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 5px;
+  line-height: 1.6;
+}
+
+/* Parallax End */
+
+/* Video Carousel Start */
+.videos {
+  max-height: 100vh;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 20px;
+}
+
+.videos_text {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+  /* font-weight: bold; */
+}
+
+.videos_line {
+  /* width: 10%; */
+  height: 2.5px;
+  background-color: black;
+  animation: lineExpand 1.5s ease-in-out forwards;
+}
+
+.filter {
+  display: flex;
+  /* Use flexbox for layout */
+  flex-direction: row;
+  /* Stack items in a column */
+  gap: 10px;
+  /* Space between the buttons */
+  margin: 20px;
+  /* Optional: Add margin around the filter container */
+}
+
+.tag {
+  background-color: black;
+  /* Button background color */
+  color: white;
+  /* Text color */
+  padding: 10px 15px;
+  /* Padding inside the button */
+  border-radius: 5px;
+  /* Rounded corners */
+  text-align: center;
+  /* Center text */
+  cursor: pointer;
+  /* Change cursor to pointer on hover */
+  transition: background-color 0.3s;
+  /* Smooth background color transition */
+}
+
+.tag:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+  /* Darker shade on hover */
+  transform: scale(1.10);
+  transition: 0.5s ease-in-out;
+}
+
+.carousel {
+  position: relative;
+  width: 100%;
+  height: 75%;
+  overflow: hidden;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.carousel_images {
+  display: flex;
+  transition: transform 0.5s ease;
+  width: 50%;
+  /* width: 1230%; */
+  height: 80%;
+  gap: 25px;
+  padding-left: 100px;
+  /* justify-content: center;
+  align-items: center; */
+  /* justify-content: flex-start; */
+}
+
+/* Carousel item and container styles */
+.carousel_item {
+  flex: 0 0 auto;
+  /* padding: 0 10px; */
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s ease;
+}
+
+.carousel_image_container {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  /* padding-bottom: 56.25%; */
+  position: relative;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.carousel_image {
+  position: absolute;
+  /* top: 0;
+  left: 0; */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.5;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  /* transform: scale(0.85); */
+  ;
+}
+
+/* .carousel_image.active {
+  opacity: 1;
+  transform: scale(1.25);
+} */
+
+.carousel_button {
+  position: absolute;
+  top: 50%;
+  /* transform: translateY(-50%); */
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  padding: 15px;
+  z-index: 10;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s;
+}
+
+.carousel_button:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.carousel_button.prev {
+  left: 20px;
+}
+
+.carousel_button.next {
+  right: 20px;
+}
+
+@media (max-width: 768px) {
+  .videos-text {
+    font-size: 3rem;
+  }
+
+  .carousel-item {
+    flex: 0 0 80%;
+  }
+
+  .landing {
+    grid-template-columns: 1fr;
+  }
+
+  .landing-text {
+    font-size: 8rem;
+  }
+
+  .landing-image-container {
+    border-radius: 0;
+  }
+
+  .parallax-text {
+    width: 80%;
+  }
+}
+
+/* Video Carousel End */
+
+/* Footer Start */
+
+.footer {
+  background-color: black;
+  color: white;
+  padding: 40px 20px;
+  text-align: center;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.footer_container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.footer_container h2 {
+  margin-bottom: 20px;
+  font-size: 2.5rem;
+}
+
+.footer_container p {
+  margin-bottom: 30px;
+  font-size: 1.2rem;
+}
+
+.contact_info {
+  list-style: none;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 0;
+  flex-wrap: wrap;
+}
+
+.contact_info li {
+  margin: 10px 20px;
+  font-size: 1.1rem;
+}
+
+.contact_info div {
+  color: #0099ff;
+  cursor: pointer;
+  transition: color 0.3s;
+  display: inline-block;
+}
+
+.contact_info div:hover {
+  color: #66ccff;
+  text-decoration: underline;
+}
+
+.social_media a {
+  margin: 0 10px;
+}
+
+.social_media img {
+  width: 30px;
+  height: auto;
+}
+
+/* Footer End */
+
+/* Animation keyframes */
+
+@keyframes scaleIn {
+  0% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes lineExpand {
+  0% {
+    width: 0;
+  }
+
+  100% {
+    width: 100%
+  }
+}
+
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 100%;
+  }
+}
+
+/* Additional responsive styles */
+@media (max-width: 480px) {
+  .landing_text {
+    font-size: 6rem;
+  }
+
+  .text_container {
+    margin: 30px;
+  }
+
+  .videos_text {
+    font-size: 2.5rem;
+  }
+
+  .carousel_item {
+    flex: 0 0 100%;
+  }
+
+  .contact_info {
+    flex-direction: column;
+  }
+}
