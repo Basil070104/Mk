@@ -68,11 +68,16 @@ export default function Home() {
       {/* Landing */}
       <div className={styles.landing}>
         <div className={styles.text_container}>
-          <div>
-            <div className={styles.landing_text}>
-              Mk.
+          <div className="h-full flex flex-col justify-between flex-wrap">
+            <div>
+              created by Basil Khwaja
             </div>
-            <div className={styles.line_landing}></div>
+            <div>
+              <div className={styles.landing_text}>
+                Mk.
+              </div>
+              <div className={styles.line_landing}></div>
+            </div>
           </div>
         </div>
         <div className={styles.landing_image_container}>
