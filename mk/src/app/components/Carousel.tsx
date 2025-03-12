@@ -21,7 +21,7 @@ const Carousel = ({
   }
 
   return (
-    <div className="w-full max-w-6xl mx-auto">
+    <div className="w-full max-w-6xl mx-auto mt-2">
       {/* Carousel container */}
       <div className="relative h-80 overflow-hidden rounded-md">
         {/* Image container */}
@@ -56,13 +56,13 @@ const Carousel = ({
       <div className="mt-3 flex justify-center gap-4">
         <button
           onClick={prevSlide}
-          className="border px-4 py-2 font-bold hover:bg-gray-100"
+          className=" px-4 py-2 font-bold hover:bg-gray-100 rounded-md"
         >
           {'<'}
         </button>
         <button
           onClick={nextSlide}
-          className="border px-4 py-2 font-bold hover:bg-gray-100"
+          className=" px-4 py-2 font-bold hover:bg-gray-100 rounded-md"
         >
           {'>'}
         </button>

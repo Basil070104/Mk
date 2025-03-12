@@ -63,7 +63,8 @@
 
 .parallax_image {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
+  height: fit-content;
   position: relative;
   background-image: url("../../public/images/val.png");
   background-attachment: fixed;
@@ -73,10 +74,9 @@
 }
 
 .parallax_text {
-  position: absolute;
-  top: 50px;
-  left: 20px;
+  position: relative;
   width: 30%;
+  height: fit-content;
   color: white;
   font-size: 1rem;
   animation: fadeIn 1.5s ease-in-out forwards;
@@ -90,8 +90,8 @@
 
 /* Video Carousel Start */
 .videos {
-  max-height: 100vh;
-  height: 100vh;
+  min-height: 100vh;
+  height: fit-content;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -300,7 +300,8 @@
 }
 
 .contact_info li {
-  margin: 10px 20px;
+  /* margin: 0px 20px; */
+  margin-bottom: 10px;
   font-size: 1.1rem;
 }
 

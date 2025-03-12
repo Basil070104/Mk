@@ -3,7 +3,8 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import Carousel from "./components/Carousel";
 import { motion, useInView } from "motion/react";
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
+import Photo from "./components/Photo";
 
 const DATA = [
   { image: '/images/face.png' },
@@ -63,19 +64,53 @@ export default function Home() {
 
       {/* Photos */}
       <div>
-        <div className={styles.parallax_image}>
-          <motion.div
-            className={styles.parallax_text}
-            initial="hidden"
-            animate={inView ? "visible" : "hidden"}
-            variants={variants}
-          >
-            He an thing rapid these after going drawn or. Timed she his law the spoil round defer.
-            In surprise concerns informed betrayed he learning is ye. Ignorant formerly so ye blessing.
-            He as spoke avoid given downs money on we. Of properly carriage shutters ye as wandered up repeated moreover.
-            Inquietude attachment if ye an solicitude to. Remaining so continued concealed as knowledge happiness.
-            Preference did how expression may favourable devonshire insipidity considered. An length design regret an hardly barton mr figure.
-          </motion.div>
+        <div className={styles.parallax_image}
+        >
+          <div>
+            <motion.div
+              className={styles.parallax_text}
+              initial="hidden"
+              animate={inView ? "visible" : "hidden"}
+              variants={variants}
+            >
+              He an thing rapid these after going drawn or. Timed she his law the spoil round defer.
+              In surprise concerns informed betrayed he learning is ye. Ignorant formerly so ye blessing.
+              He as spoke avoid given downs money on we. Of properly carriage shutters ye as wandered up repeated moreover.
+              Inquietude attachment if ye an solicitude to. Remaining so continued concealed as knowledge happiness.
+              Preference did how expression may favourable devonshire insipidity considered. An length design regret an hardly barton mr figure.
+            </motion.div>
+            <div className="p-10">
+              <div className="flex justify-around m-10">
+                <Photo
+                  src="/images/face.png"
+                  alt="temp image"
+                />
+                <Photo
+                  src="/images/face.png"
+                  alt="temp image"
+                />
+                <Photo
+                  src="/images/face.png"
+                  alt="temp image"
+                />
+              </div>
+              <div className="flex justify-around m-10">
+                <Photo
+                  src="/images/face.png"
+                  alt="temp image"
+                />
+                <Photo
+                  src="/images/face.png"
+                  alt="temp image"
+                />
+                <Photo
+                  src="/images/face.png"
+                  alt="temp image"
+                />
+              </div>
+
+            </div>
+          </div>
         </div>
       </div>
 
@@ -108,6 +143,7 @@ export default function Home() {
           </div>
         </div>
         <Carousel data={DATA} />
+        <Carousel data={DATA} />
       </div>
 
       {/* Contact */}
@@ -126,6 +162,9 @@ export default function Home() {
             </li>
             {/* <li><strong>Address:</strong> 123 Main St, Anytown, USA</li> */}
           </ul>
+          <div>
+            Created by Basil Khwaja.
+          </div>
         </div>
       </div>
     </div>
