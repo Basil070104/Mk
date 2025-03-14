@@ -104,7 +104,7 @@ export default function Home() {
                 animate={inView ? "visible" : "hidden"}
                 variants={variants}
               >
-                Photography
+                Photography.
               </motion.div>
             </div>
             {/* <div className="w-1/2 h-1/2">
@@ -165,7 +165,7 @@ export default function Home() {
       >
         <div className={styles.videos_text}>
           <div>
-            Cinematography
+            Cinematography.
           </div>
           <div className={styles.videos_line}></div>
         </div>

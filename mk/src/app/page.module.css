@@ -8,7 +8,7 @@
   margin: 0;
   /* scroll-snap-type: y mandatory; */
   /* font-family: 'Arial', sans-serif; */
-  font-family: sans-serif;
+  font-family: "Inria Serif", "Inria Serif Placeholder", serif;
 }
 
 /* Landing Start */
@@ -88,6 +88,8 @@
   padding: 20px;
   border-radius: 10px;
   line-height: 1.6;
+  font-style: italic;
+  font-weight: bold;
 }
 
 /* Parallax End */
@@ -109,6 +111,8 @@
   margin-bottom: 1rem;
   margin-top: 2rem;
   /* font-weight: bold; */
+  font-style: italic;
+  font-weight: bold;
 }
 
 .videos_line {

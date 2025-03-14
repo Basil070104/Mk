@@ -11,7 +11,7 @@ interface PhotoProps {
 
 const Photo: React.FC<PhotoProps> = ({ src, alt, className = '' }) => {
   return (
-    <motion.div className="relative w-sm aspect-[4/3] rounded-lg overflow-hidden bg-grey shadow-xl"
+    <motion.div className="relative w-full max-w-xs aspect-[4/3] rounded-lg overflow-hidden bg-grey shadow-xl"
       whileHover={{ scale: 1.1 }}
       transition={{ duration: 0.5 }}
     >
