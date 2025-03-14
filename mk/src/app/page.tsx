@@ -69,7 +69,7 @@ export default function Home() {
       <div className={styles.landing}>
         <div className={styles.text_container}>
           <div className="h-full flex flex-col justify-between flex-wrap">
-            <div>
+            <div className="font-bold">
               created by Basil Khwaja
             </div>
             <div>
@@ -82,7 +82,7 @@ export default function Home() {
         </div>
         <div className={styles.landing_image_container}>
           <Image
-            src="/images/hot_matt.png"
+            src="/images/matt.png"
             alt="matthew"
             className={styles.landing_image}
             width={800} // Add required width for Next.js Image
@@ -107,14 +107,31 @@ export default function Home() {
                 Photography
               </motion.div>
             </div>
+            <div className="py-10">
+
+            </div>
             <div className="p-10 w-full">
               <div className="flex justify-around my-10 w-full">
                 <Photo
-                  src="/images/face.png"
+                  src="/images/theatre.jpg"
                   alt="temp image"
                 />
                 <Photo
-                  src="/images/face.png"
+                  src="/images/vancouver.jpg"
+                  alt="temp image"
+                />
+                <Photo
+                  src="/images/matt_arms.png"
+                  alt="temp image"
+                />
+              </div>
+              <div className="flex justify-around my-10">
+                <Photo
+                  src="/images/val_sit.jpg"
+                  alt="temp image"
+                />
+                <Photo
+                  src="/images/lake.jpg"
                   alt="temp image"
                 />
                 <Photo
@@ -124,29 +141,15 @@ export default function Home() {
               </div>
               <div className="flex justify-around my-10">
                 <Photo
-                  src="/images/face.png"
+                  src="/images/hands.jpg"
                   alt="temp image"
                 />
                 <Photo
-                  src="/images/face.png"
+                  src="/images/val_eyes.jpg"
                   alt="temp image"
                 />
                 <Photo
-                  src="/images/face.png"
-                  alt="temp image"
-                />
-              </div>
-              <div className="flex justify-around my-10">
-                <Photo
-                  src="/images/face.png"
-                  alt="temp image"
-                />
-                <Photo
-                  src="/images/face.png"
-                  alt="temp image"
-                />
-                <Photo
-                  src="/images/face.png"
+                  src="/images/skyline.jpg"
                   alt="temp image"
                 />
               </div>
