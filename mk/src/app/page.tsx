@@ -74,7 +74,7 @@ export default function Home() {
             </div>
             <div>
               <div className={styles.landing_text}>
-                Mk.
+                mk.
               </div>
               <div className={styles.line_landing}></div>
             </div>
@@ -96,7 +96,7 @@ export default function Home() {
         <div className={`${styles.parallax_image} ${isSticky ? 'sticky top-0 z-10' : ''}`}
           ref={parallaxRef}
         >
-          <div className="w-full">
+          <div className="w-full h-fit">
             <div className="flex w-full justify-center align-middle">
               <motion.div
                 className={`${styles.parallax_text} overflow-hidden`}
@@ -107,9 +107,9 @@ export default function Home() {
                 Photography
               </motion.div>
             </div>
-            <div className="py-10">
+            {/* <div className="w-1/2 h-1/2">
 
-            </div>
+            </div> */}
             <div className="p-10 w-full">
               <div className="flex justify-around my-10 w-full">
                 <Photo
@@ -135,7 +135,7 @@ export default function Home() {
                   alt="temp image"
                 />
                 <Photo
-                  src="/images/face.png"
+                  src="/images/bridge.jpg"
                   alt="temp image"
                 />
               </div>
