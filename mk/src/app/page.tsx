@@ -192,6 +192,9 @@ export default function Home() {
         <Carousel data={DATA} />
       </div>
 
+      <div className="w-full h-0.5 bg-gray-200 px-0.5">
+
+      </div>
       {/* Contact */}
       <div className={styles.footer}>
         <div className={styles.footer_container}>

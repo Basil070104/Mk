@@ -86,7 +86,7 @@ const ParticleBackground = () => {
             opacity="0.3"
             filter="url(#glow)"
           >
-            <animate
+            {/* <animate
               attributeName="cx"
               values={`${Math.random() * 100};${Math.random() * 100}`}
               dur={`${20 + Math.random() * 10}s`}
@@ -103,7 +103,7 @@ const ParticleBackground = () => {
               values="0.1;0.4;0.1"
               dur={`${5 + Math.random() * 5}s`}
               repeatCount="indefinite"
-            />
+            /> */}
           </circle>
         ))}
       </svg>
