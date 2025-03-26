@@ -42,6 +42,10 @@ export default function Home() {
   const [isSticky, setIsSticky] = useState(false);
   const parallaxRef = useRef<HTMLDivElement>(null);
   const videosRef = useRef<HTMLDivElement>(null);
+  const [appear, isAppear] = useState(false)
+
+  const mkRef = useRef(null);
+  const view = useInView(mkRef);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -65,19 +69,36 @@ export default function Home() {
 
   return (
     <div>
+      {/* Sticky Bar */}
+      <div className="sticky top-0 z-50 bg-white pt-4 px-4">
+        <div className="flex justify-between items-center">
+
+          {!view && (
+            <motion.h1
+              className="text-xl font-bold whitespace-nowrap"
+              initial={{ opacity: 0, y: -20 }} // Initial state
+              animate={{ opacity: 1, y: 0 }} // Animate to this state
+              transition={{ duration: 0.5 }} // Duration of the animation
+            >
+              matthew kurniawan
+            </motion.h1>
+          )}
+
+          <nav className="flex space-x-4 items-end w-full justify-end">
+            <a href="#section1" className="text-gray-700 hover:text-gray-500">Cinematography</a>
+            <a href="#section2" className="text-gray-700 hover:text-gray-500">Photography</a>
+            <a className="text-gray-700 hover:text-gray-500">Chicago, IL</a>
+          </nav>
+        </div>
+        <div className="border-b border-gray-300 mt-4" />
+      </div>
+
       {/* Landing */}
       <div className={styles.landing}>
         <div className={styles.text_container}>
-          <div className="h-full flex flex-col justify-between flex-wrap">
-            <div className="font-bold">
-              created by Basil Khwaja
-            </div>
-            <div>
-              <div className={styles.landing_text}>
-                mk.
-              </div>
-              <div className={styles.line_landing}></div>
-            </div>
+
+          <div className={styles.landing_text} ref={mkRef}>
+            mk.
           </div>
         </div>
         <div className={styles.landing_image_container}>
@@ -100,17 +121,24 @@ export default function Home() {
             <div className="flex w-full justify-center align-middle">
               <motion.div
                 className={`${styles.parallax_text} overflow-hidden`}
-                initial="hidden"
-                animate={inView ? "visible" : "hidden"}
-                variants={variants}
+                animate={{
+                  y: [0, 10, 0],
+                  transition: {
+                    duration: 1.5,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }
+                }}
               >
-                Photography.
+                <svg width="32" height="32" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12.6667 6L8.00001 10.6667L3.33334 6" stroke="#0C0C0C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
               </motion.div>
             </div>
             {/* <div className="w-1/2 h-1/2">
 
             </div> */}
-            <div className="p-10 w-full">
+            {/* <div className="p-10 w-full">
               <div className="flex justify-around my-10 w-full">
                 <Photo
                   src="/images/theatre.jpg"
@@ -153,6 +181,86 @@ export default function Home() {
                   alt="temp image"
                 />
               </div>
+            </div> */}
+
+            {/* Bento Grid */}
+            <div className="flex justify-center items-center w-full mb-5">
+              <div className={styles.grid} >
+
+                <div className={styles.box} style={{ gridArea: "box-1" }}>
+                  <Photo
+                    src="/images/skyline.jpg"
+                    alt="temp image"
+                    title="skyline"
+                    subheader="Photo"
+                  />
+                </div>
+                <div className={styles.box} style={{ gridArea: "box-2" }}>
+                  <Photo
+                    src="/images/theatre.jpg"
+                    alt="temp image"
+                    title="person"
+                    subheader="Photo"
+                  />
+                </div>
+                <div className={styles.box} style={{ gridArea: "box-3" }}>
+                  <Photo
+                    src="/images/val_eyes.jpg"
+                    alt="temp image"
+                    title="person"
+                    subheader="Photo"
+                  />
+                </div>
+                <div className={styles.box} style={{ gridArea: "box-4" }}>
+                  <Photo
+                    src="/images/hands.jpg"
+                    alt="temp image"
+                    title="person"
+                    subheader="Photo"
+                  />
+                </div>
+                <div className={styles.box} style={{ gridArea: "box-5" }}>
+                  <Photo
+                    src="/images/bridge.jpg"
+                    alt="temp image"
+                    title="person"
+                    subheader="Photo"
+                  />
+                </div>
+                <div className={styles.box} style={{ gridArea: "box-6" }}>
+                  <Photo
+                    src="/images/light.png"
+                    alt="temp image"
+                    title="person"
+                    subheader="Photo"
+                  />
+                </div>
+                <div className={styles.box} style={{ gridArea: "box-7" }}>
+                  <Photo
+                    src="/images/matt_arms.png"
+                    alt="temp image"
+                    title="person"
+                    subheader="Photo"
+                  />
+                </div>
+                <div className={styles.box} style={{ gridArea: "box-8" }}>
+                  <Photo
+                    src="/images/matt_fog.jpg"
+                    alt="temp image"
+                    title="person"
+                    subheader="Photo"
+                  />
+                </div>
+                <div className={styles.box} style={{ gridArea: "box-9" }}>
+                  <Photo
+                    src="/images/lake.jpg"
+                    alt="temp image"
+                    title="person"
+                    subheader="Photo"
+                  />
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
@@ -169,7 +277,7 @@ export default function Home() {
           </div>
           <div className={styles.videos_line}></div>
         </div>
-        <div>
+        {/* <div>
           <div className={styles.filter}>
             <div className={styles.tag}>
               All
@@ -187,7 +295,7 @@ export default function Home() {
               Dance
             </div>
           </div>
-        </div>
+        </div> */}
         <Carousel data={DATA} />
         <Carousel data={DATA} />
       </div>
