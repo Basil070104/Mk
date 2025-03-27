@@ -13,7 +13,7 @@ interface PhotoProps {
 
 const Photo: React.FC<PhotoProps> = ({ src, alt, title, subheader, className = '' }) => {
   return (
-    <motion.div className="relative w-full bg-grey shadow-xl flex-col justify-end h-fit"
+    <motion.div className="relative w-full bg-grey shadow-xl flex-col justify-center items-center h-fit"
       whileHover={{ scale: 1.02 }}
       transition={{ duration: 0.5 }}
     >

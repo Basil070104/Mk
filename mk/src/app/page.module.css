@@ -103,19 +103,22 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 10px;
 }
 
 
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 440px);
-  grid-template-rows: repeat(4, 330px);
+  grid-template-rows: repeat(6, 330px);
   gap: 1em;
   grid-template-areas:
     "box-1 box-2 box-2"
     "box-4 box-4 box-5"
     "box-3 box-9 box-9"
-    "box-8 box-9 box-9";
+    "box-8 box-9 box-9"
+    "box-10 box-10 box-6"
+    "box-10 box-10 box-7";
 }
 
 

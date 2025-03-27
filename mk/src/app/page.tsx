@@ -5,6 +5,7 @@ import Carousel from "./components/Carousel";
 import { motion, useInView } from "motion/react";
 import { useRef, useEffect, useState } from "react";
 import Photo from "./components/Photo";
+// import { Fade, Slide } from "react-awesome-reveal"
 
 const DATA = [
   { image: '/images/face.png' },
@@ -86,7 +87,7 @@ export default function Home() {
 
           <nav className="flex space-x-4 items-end w-full justify-end">
             <a href="#section1" className="text-gray-700 hover:text-gray-500">Cinematography</a>
-            <a href="#section2" className="text-gray-700 hover:text-gray-500">Photography</a>
+            {/* <a href="#section2" className="text-gray-700 hover:text-gray-500">Photography</a> */}
             <a className="text-gray-700 hover:text-gray-500">Chicago, IL</a>
           </nav>
         </div>
@@ -187,6 +188,7 @@ export default function Home() {
             <div className="flex justify-center items-center w-full mb-5">
               <div className={styles.grid} >
 
+
                 <div className={styles.box} style={{ gridArea: "box-1" }}>
                   <Photo
                     src="/images/skyline.jpg"
@@ -195,6 +197,8 @@ export default function Home() {
                     subheader="Photo"
                   />
                 </div>
+
+
                 <div className={styles.box} style={{ gridArea: "box-2" }}>
                   <Photo
                     src="/images/theatre.jpg"
@@ -237,7 +241,7 @@ export default function Home() {
                 </div>
                 <div className={styles.box} style={{ gridArea: "box-7" }}>
                   <Photo
-                    src="/images/matt_arms.png"
+                    src="/images/stage.png"
                     alt="temp image"
                     title="person"
                     subheader="Photo"
@@ -259,6 +263,14 @@ export default function Home() {
                     subheader="Photo"
                   />
                 </div>
+                <div className={styles.box} style={{ gridArea: "box-10" }}>
+                  <Photo
+                    src="/images/matt_arms.png"
+                    alt="temp image"
+                    title="person"
+                    subheader="Photo"
+                  />
+                </div>
               </div>
 
             </div>
@@ -268,7 +280,7 @@ export default function Home() {
 
 
       {/* Videos */}
-      <div className={styles.videos}
+      {/* <div className={styles.videos}
         ref={videosRef}
       >
         <div className={styles.videos_text}>
@@ -277,28 +289,9 @@ export default function Home() {
           </div>
           <div className={styles.videos_line}></div>
         </div>
-        {/* <div>
-          <div className={styles.filter}>
-            <div className={styles.tag}>
-              All
-            </div>
-            <div className={styles.tag}>
-              Short Film
-            </div>
-            <div className={styles.tag}>
-              Writing
-            </div>
-            <div className={styles.tag}>
-              Something?
-            </div>
-            <div className={styles.tag}>
-              Dance
-            </div>
-          </div>
-        </div> */}
         <Carousel data={DATA} />
         <Carousel data={DATA} />
-      </div>
+      </div> */}
 
       <div className="w-full h-0.5 bg-gray-200 px-0.5">
 
@@ -306,18 +299,12 @@ export default function Home() {
       {/* Contact */}
       <div className={styles.footer}>
         <div className={styles.footer_container}>
-          <h2>Contact Me</h2>
-          <p>If you have any questions, feel free to reach out!</p>
           <ul className={styles.contact_info}>
-            <li>
-              <strong>Email:</strong>{' '}
-              <a href="mailto:info@example.com">info@example.com</a>
-            </li>
-            <li>
-              <strong>Phone:</strong>{' '}
-              <a href="tel:+1234567890">+1 (234) 567-890</a>
-            </li>
-            {/* <li><strong>Address:</strong> 123 Main St, Anytown, USA</li> */}
+
+            <div>Instagram:<a href="mailto:info@example.com">info@example.com</a></div>
+
+
+            <div>Youtube: <a href="tel:+1234567890">+1 (234) 567-890</a></div>
           </ul>
           <div>
             Created by Basil Khwaja.
