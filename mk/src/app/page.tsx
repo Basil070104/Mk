@@ -301,11 +301,14 @@ export default function Home() {
         <div className={styles.footer_container}>
           <ul className={styles.contact_info}>
 
-            <div>Instagram:<a href="mailto:info@example.com">info@example.com</a></div>
+            <div><a href="https://www.instagram.com/mqtt.k/?utm_source=ig_web_button_share_sheet">Instagram</a></div>
 
 
-            <div>Youtube: <a href="tel:+1234567890">+1 (234) 567-890</a></div>
+            <div> <a href="https://www.youtube.com/@mattkrnwn">Youtube</a></div>
           </ul>
+          <div>
+            Let's make something together
+          </div>
           <div>
             Created by Basil Khwaja.
           </div>

@@ -101,16 +101,17 @@
   /* background-color: blue; */
   overflow: hidden;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: start;
   align-items: center;
-  border-radius: 10px;
+  /* border-radius: 10px; */
 }
 
 
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 440px);
-  grid-template-rows: repeat(6, 330px);
+  grid-template-rows: repeat(6, auto);
   gap: 1em;
   grid-template-areas:
     "box-1 box-2 box-2"
@@ -334,9 +335,8 @@
 }
 
 .contact_info div {
-  color: #0099ff;
+  /* color: #0099ff; */
   cursor: pointer;
-  transition: color 0.3s;
   display: inline-block;
 }
 

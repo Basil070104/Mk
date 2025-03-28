@@ -1,7 +1,7 @@
 'use client'
 import Image from 'next/image'
 import React from 'react'
-import { motion } from 'motion/react'
+import { motion } from 'framer-motion'
 
 interface PhotoProps {
   src: string
@@ -13,29 +13,30 @@ interface PhotoProps {
 
 const Photo: React.FC<PhotoProps> = ({ src, alt, title, subheader, className = '' }) => {
   return (
-    <motion.div className="relative w-full bg-grey shadow-xl flex-col justify-center items-center h-fit"
-      whileHover={{ scale: 1.02 }}
-      transition={{ duration: 0.5 }}
-    >
-      <div className='aspect-[4/3] relative'>
+    <motion.div className="relative w-full bg-grey flex flex-col" style={{ height: '100%' }}>
+      <motion.div
+        className='relative flex-grow'
+        whileHover={{ scale: 1.02 }}
+        transition={{ duration: 0.5 }}
+        style={{ paddingBottom: '75%' }}
+      >
         <Image
           src={src}
           alt={alt}
           fill
-          className={`object-cover h-fit w-full${className}`}
-          sizes=""
-        // style={{height: "fit"}}
-        // height={100}
-        // width={100}
+          className={`object-cover w-full ${className}`}
+          sizes="100vw"
         />
-      </div>
+      </motion.div>
 
-      {/* <div className='text-black font-semibold text-lg'>
-        {title}
+      <div className='flex-shrink-0 h-1/4 p-2'>
+        <div className='text-black font-semibold text-lg'>
+          {title}
+        </div>
+        <div className='text-gray-700'>
+          {subheader}
+        </div>
       </div>
-      <div className='text-gray-700'>
-        {subheader}
-      </div> */}
     </motion.div>
   )
 }
