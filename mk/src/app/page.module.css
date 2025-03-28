@@ -19,6 +19,11 @@
   font-family: "Darker Grotesque", sans-serif;
 }
 
+.info {
+  font-size: x-large;
+  font-family: "Darker Grotesque", sans-serif;
+}
+
 .landing {
   display: grid;
   min-height: 100vh;
@@ -71,6 +76,7 @@
   overflow: hidden;
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
+  margin-top: 10px;
 }
 
 /* Landing End */
@@ -310,13 +316,14 @@
   padding: 40px 20px;
   text-align: center;
   font-family: "Darker Grotesque", sans-serif;
+  font-size: large;
   /* border-top-left-radius: 20px;
   border-top-right-radius: 20px; */
   /* box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.3); */
 }
 
 .footer_container {
-  max-width: 800px;
+  max-width: 75%;
   margin: 0 auto;
   display: flex;
   flex-direction: row-reverse;

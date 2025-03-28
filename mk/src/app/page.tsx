@@ -2,9 +2,10 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import Carousel from "./components/Carousel";
-import { motion, useInView, AnimatePresence } from "motion/react";
+import { motion, useInView, AnimatePresence, useScroll, useSpring } from "motion/react";
 import { useRef, useEffect, useState } from "react";
 import Photo from "./components/Photo";
+import { style } from "motion/react-client";
 // import { Fade, Slide } from "react-awesome-reveal"
 
 const DATA = [
@@ -47,6 +48,18 @@ export default function Home() {
 
   const mkRef = useRef(null);
   const view = useInView(mkRef);
+  const cinema = useRef(null)
+
+  const handleClick = () => {
+    cinema.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const { scrollYProgress } = useScroll()
+  const scaleY = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  })
 
   useEffect(() => {
     const handleScroll = () => {
@@ -70,16 +83,19 @@ export default function Home() {
 
   return (
     <div>
+      <motion.div className="fixed left-7 top-20 bg-gray-300 w-0.5 h-2/3 origin-left" style={{ scaleY, transformOrigin: 'top' }}>
+
+      </motion.div>
       {/* Sticky Bar */}
       <div className="sticky top-0 z-50 bg-white pt-4 px-4">
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center text-xl">
           <AnimatePresence>
             {!view && (
               <motion.h1
-                className="text-xl font-bold whitespace-nowrap"
-                initial={{ opacity: 0, y: -20 }} // Initial state
-                animate={{ opacity: 1, y: 0 }} // Animate to this state
-                transition={{ duration: 0.5 }} // Duration of the animation
+                className=" font-bold whitespace-nowrap"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
                 exit={{ opacity: 0, y: -20 }}
               >
                 matthew kurniawan
@@ -89,7 +105,7 @@ export default function Home() {
 
 
           <nav className={`flex space-x-4 items-end w-full justify-end ${styles.nav}`}>
-            <a href="#Cinematography" className="text-gray-700 hover:text-gray-500">Cinematography</a>
+            <div className="text-gray-700 hover:text-gray-500 hover:cursor-pointer" onClick={handleClick}>Cinematography</div>
             {/* <a href="#section2" className="text-gray-700 hover:text-gray-500">Photography</a> */}
             <a className="text-gray-700 hover:text-gray-500">Chicago, IL</a>
           </nav>
@@ -101,8 +117,8 @@ export default function Home() {
       <div className={styles.landing}>
         <div className={styles.text_container}>
 
-          <div className="text-xl">
-            I'm a Chicago-based filmmaker <br />with a love for <br />interactive media, user experience, and design ⊹₊ ⋆
+          <div className={styles.info}>
+            I'm a Chicago-based filmmaker <br />with a love for interactive media, <br />user experience, and design ⊹₊ ⋆
           </div>
 
           <div className={styles.landing_text} ref={mkRef}>
@@ -114,7 +130,11 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className={styles.landing_image_container}>
+        <motion.div className={styles.landing_image_container}
+          initial={{ scale: 1.05 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 0.5 }}
+        >
           <Image
             src="/images/matt.png"
             alt="matthew"
@@ -122,11 +142,11 @@ export default function Home() {
             width={800} // Add required width for Next.js Image
             height={500} // Add required height for Next.js Image
           />
-        </div>
+        </motion.div>
       </div>
 
       {/* Photos */}
-      <div id="Cinematography">
+      <div id="Cinematography" ref={cinema}>
         <div className={`${styles.parallax_image} ${isSticky ? 'sticky top-0 z-10' : ''}`}
           ref={parallaxRef}
         >
@@ -144,7 +164,7 @@ export default function Home() {
                 }}
               >
                 <svg width="32" height="32" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12.6667 6L8.00001 10.6667L3.33334 6" stroke="#0C0C0C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M12.6667 6L8.00001 10.6667L3.33334 6" stroke="#0C0C0C" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </motion.div>
             </div>
@@ -267,10 +287,10 @@ export default function Home() {
           <div className={styles.contact_info}>
 
             <div className="text-left px-4 underline underline-offset-2">
-              <div><a href="https://www.instagram.com/mqtt.k/?utm_source=ig_web_button_share_sheet">Instagram</a></div>
+              <div><a href="https://www.instagram.com/mqtt.k/?utm_source=ig_web_button_share_sheet" target="_blank">Instagram</a></div>
 
 
-              <div> <a href="https://www.youtube.com/@mattkrnwn">Youtube</a></div>
+              <div> <a href="https://www.youtube.com/@mattkrnwn" target="_blank">Youtube</a></div>
             </div>
 
             <div className="flex flex-col text-left px-4">
@@ -285,7 +305,7 @@ export default function Home() {
           </div>
 
           <div>
-            Created by <a className="underline underline-offset-2" href="https://www.instagram.com/basil_k07/">Basil Khwaja</a>.
+            Created by <a className="underline underline-offset-2" href="https://www.instagram.com/basil_k07/" target="_blank">Basil Khwaja</a>.
           </div>
         </div>
       </div>
