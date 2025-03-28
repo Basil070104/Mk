@@ -20,7 +20,7 @@
 }
 
 .info {
-  font-size: x-large;
+  font-size: 2vw;
   font-family: "Darker Grotesque", sans-serif;
 }
 
@@ -28,12 +28,12 @@
   display: grid;
   min-height: 100vh;
   width: 100vw;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   /* margin: 20px; */
 }
 
 .landing_text {
-  font-size: 10rem;
+  font-size: 8vw;
   /* animation: fadeIn 1.5s ease-in-out forwards; */
   line-height: 0.9;
   /* margin: 0; */
@@ -117,25 +117,30 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  /* justify-content: start; */
   align-items: center;
   font-family: "Darker Grotesque", sans-serif;
+  margin: 0;
+  padding: 0;
   /* border-radius: 10px; */
 }
 
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 440px);
-  grid-template-rows: repeat(6, auto);
-  gap: 1em;
-  grid-template-areas:
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  width: 90%;
+  /* grid-template-rows: repeat(6, auto); */
+  gap: 0.75em;
+  /* grid-template-areas:
     "box-1 box-2 box-2"
     "box-4 box-4 box-5"
     "box-3 box-9 box-9"
     "box-8 box-9 box-9"
     "box-10 box-10 box-6"
-    "box-10 box-10 box-7";
+    "box-10 box-10 box-7"; */
+  position: relative;
+  /* margin: 10px; */
 }
 
 

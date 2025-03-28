@@ -7,6 +7,8 @@ import { useRef, useEffect, useState } from "react";
 import Photo from "./components/Photo";
 import { style } from "motion/react-client";
 // import { Fade, Slide } from "react-awesome-reveal"
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 
 const DATA = [
   { image: '/images/face.png' },
@@ -49,9 +51,14 @@ export default function Home() {
   const mkRef = useRef(null);
   const view = useInView(mkRef);
   const cinema = useRef(null)
+  const top = useRef(null)
 
   const handleClick = () => {
     cinema.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const topClick = () => {
+    top.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
   const { scrollYProgress } = useScroll()
@@ -81,22 +88,29 @@ export default function Home() {
     };
   }, []);
 
+  useEffect(() => {
+    AOS.init({
+      duration: 1200
+    })
+  }, [])
+
   return (
-    <div>
-      <motion.div className="fixed left-7 top-20 bg-gray-300 w-0.5 h-2/3 origin-left" style={{ scaleY, transformOrigin: 'top' }}>
+    <div ref={top}>
+      <motion.div className="fixed left-7 top-20 bg-gray-300 w-0.5 h-4/5 origin-left" style={{ scaleY, transformOrigin: 'top' }}>
 
       </motion.div>
       {/* Sticky Bar */}
       <div className="sticky top-0 z-50 bg-white pt-4 px-4">
-        <div className="flex justify-between items-center text-xl">
-          <AnimatePresence>
+        <div className="flex justify-between items-center text-xl" >
+          <AnimatePresence >
             {!view && (
               <motion.h1
-                className=" font-bold whitespace-nowrap"
+                className=" font-bold whitespace-nowrap hover:cursor-pointer"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
                 exit={{ opacity: 0, y: -20 }}
+                onClick={topClick}
               >
                 matthew kurniawan
               </motion.h1>
@@ -117,11 +131,11 @@ export default function Home() {
       <div className={styles.landing}>
         <div className={styles.text_container}>
 
-          <div className={styles.info}>
+          <div className={styles.info} data-aos="fade-right">
             I'm a Chicago-based filmmaker <br />with a love for interactive media, <br />user experience, and design ⊹₊ ⋆
           </div>
 
-          <div className={styles.landing_text} ref={mkRef}>
+          <div className={styles.landing_text} ref={mkRef} data-aos="fade-right">
             <div>
               matthew
             </div>
@@ -173,88 +187,117 @@ export default function Home() {
             <div className="flex justify-center items-center w-full mb-5">
               <div className={styles.grid} >
 
+                <div className="flex flex-col gap-0" >
+                  <div className={styles.box} style={{ gridArea: "box-1", flexGrow: 2 }} data-aos="fade-up">
+                    <Photo
+                      src="/images/skyline.jpg"
+                      alt="temp image"
+                      title="skyline"
+                      subheader="Photo"
+                    />
+                  </div>
 
-                <div className={styles.box} style={{ gridArea: "box-1" }}>
-                  <Photo
-                    src="/images/skyline.jpg"
-                    alt="temp image"
-                    title="skyline"
-                    subheader="Photo"
-                  />
-                </div>
 
-
-                <div className={styles.box} style={{ gridArea: "box-2" }}>
-                  <Photo
-                    src="/images/theatre.jpg"
-                    alt="temp image"
-                    title="person"
-                    subheader="Photo"
-                  />
+                  <div className={styles.box} style={{ gridArea: "box-2", flexGrow: 2 }} data-aos="fade-up">
+                    <Photo
+                      src="/images/theatre.jpg"
+                      alt="temp image"
+                      title="person"
+                      subheader="Photo"
+                    />
+                  </div>
+                  <div className={styles.box} style={{ gridArea: "box-3", flexGrow: 3 }} data-aos="fade-up">
+                    <Photo
+                      src="/images/val_eyes.jpg"
+                      alt="temp image"
+                      title="person"
+                      subheader="Photo"
+                    />
+                  </div>
+                  <div className={styles.box} style={{ gridArea: "box-3", flexGrow: 4 }} data-aos="fade-up">
+                    <Photo
+                      src="/images/val_sit.jpg"
+                      alt="temp image"
+                      title="person"
+                      subheader="Photo"
+                    />
+                  </div>
                 </div>
-                <div className={styles.box} style={{ gridArea: "box-3" }}>
-                  <Photo
-                    src="/images/val_eyes.jpg"
-                    alt="temp image"
-                    title="person"
-                    subheader="Photo"
-                  />
+                <div className="flex flex-col gap-0">
+                  <div className={styles.box} style={{ gridArea: "box-4" }} data-aos="fade-up">
+                    <Photo
+                      src="/images/hands.jpg"
+                      alt="temp image"
+                      title="person"
+                      subheader="Photo"
+                    />
+                  </div>
+                  <div className={styles.box} style={{ gridArea: "box-5" }} data-aos="fade-up">
+                    <Photo
+                      src="/images/bridge.jpg"
+                      alt="temp image"
+                      title="person"
+                      subheader="Photo"
+                    />
+                  </div>
+                  <div className={styles.box} style={{ gridArea: "box-6" }} data-aos="fade-up">
+                    <Photo
+                      src="/images/light.png"
+                      alt="temp image"
+                      title="person"
+                      subheader="Photo"
+                    />
+                  </div>
+                  <div className={styles.box} style={{ gridArea: "box-7" }} data-aos="fade-up">
+                    <Photo
+                      src="/images/stage.png"
+                      alt="temp image"
+                      title="person"
+                      subheader="Photo"
+                    />
+                  </div>
+                  <div className={styles.box} style={{ gridArea: "box-7" }} data-aos="fade-up">
+                    <Photo
+                      src="/images/vancouver.jpg"
+                      alt="temp image"
+                      title="person"
+                      subheader="Photo"
+                    />
+                  </div>
                 </div>
-                <div className={styles.box} style={{ gridArea: "box-4" }}>
-                  <Photo
-                    src="/images/hands.jpg"
-                    alt="temp image"
-                    title="person"
-                    subheader="Photo"
-                  />
-                </div>
-                <div className={styles.box} style={{ gridArea: "box-5" }}>
-                  <Photo
-                    src="/images/bridge.jpg"
-                    alt="temp image"
-                    title="person"
-                    subheader="Photo"
-                  />
-                </div>
-                <div className={styles.box} style={{ gridArea: "box-6" }}>
-                  <Photo
-                    src="/images/light.png"
-                    alt="temp image"
-                    title="person"
-                    subheader="Photo"
-                  />
-                </div>
-                <div className={styles.box} style={{ gridArea: "box-7" }}>
-                  <Photo
-                    src="/images/stage.png"
-                    alt="temp image"
-                    title="person"
-                    subheader="Photo"
-                  />
-                </div>
-                <div className={styles.box} style={{ gridArea: "box-8" }}>
-                  <Photo
-                    src="/images/matt_fog.jpg"
-                    alt="temp image"
-                    title="person"
-                    subheader="Photo"
-                  />
-                </div>
-                <div className={styles.box} style={{ gridArea: "box-9" }}>
-                  <Photo
-                    src="/images/lake.jpg"
-                    alt="temp image"
-                    title="person"
-                    subheader="Photo"
-                  />
-                </div>
-                <div className={styles.box} style={{ gridArea: "box-10" }}>
-                  <Photo
-                    src="/images/matt_arms.png"
-                    alt="temp image"
-                    title="person"
-                    subheader="Photo"
-                  />
+                <div className="flex flex-col gap-0">
+                  <div className={styles.box} style={{ gridArea: "box-8", flexGrow: 2 }} data-aos="fade-up">
+                    <Photo
+                      src="/images/matt_fog.jpg"
+                      alt="temp image"
+                      title="person"
+                      subheader="Photo"
+                    />
+                  </div>
+                  <div className={styles.box} style={{ gridArea: "box-9", flexGrow: 7 }} data-aos="fade-up">
+                    <Photo
+                      src="/images/lake.jpg"
+                      alt="temp image"
+                      title="person"
+                      subheader="Photo"
+                    />
+                  </div>
+                  <div className={styles.box} style={{ gridArea: "box-10", flexGrow: 1 }} data-aos="fade-up">
+                    <Photo
+                      src="/images/matt_arms.png"
+                      alt="temp image"
+                      title="person"
+                      subheader="Photo"
+                    />
+                  </div>
+                  <div className={styles.box} style={{ gridArea: "box-10", flexGrow: 1 }} data-aos="fade-up">
+                    <Photo
+                      src="/images/josh.png"
+                      alt="temp image"
+                      title="person"
+                      subheader="Photo"
+                    />
+                  </div>
                 </div>
               </div>
 
@@ -278,9 +321,9 @@ export default function Home() {
         <Carousel data={DATA} />
       </div> */}
 
-      <div className="w-full h-0.5 bg-gray-200 px-0.5">
+      {/* <div className="w-full h-0.5 bg-gray-200 px-0.5">
 
-      </div>
+      </div> */}
       {/* Contact */}
       <div className={styles.footer}>
         <div className={styles.footer_container}>

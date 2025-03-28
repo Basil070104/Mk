@@ -13,7 +13,7 @@ interface PhotoProps {
 
 const Photo: React.FC<PhotoProps> = ({ src, alt, title, subheader, className = '' }) => {
   return (
-    <motion.div className="relative w-full bg-grey flex flex-col" style={{ height: '100%' }}>
+    <motion.div className="relative w-full bg-grey flex flex-col " style={{ height: '100%' }}>
       <motion.div
         className='relative flex-grow'
         whileHover={{ scale: 1.02 }}
@@ -29,7 +29,7 @@ const Photo: React.FC<PhotoProps> = ({ src, alt, title, subheader, className = '
         />
       </motion.div>
 
-      <div className='flex-shrink-0 h-1/4 p-2'>
+      <div className='flex-shrink-0 h-fit p-2'>
         <div className='text-black font-semibold text-lg'>
           {title}
         </div>
