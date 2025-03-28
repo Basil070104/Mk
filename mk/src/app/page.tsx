@@ -2,7 +2,7 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import Carousel from "./components/Carousel";
-import { motion, useInView } from "motion/react";
+import { motion, useInView, AnimatePresence } from "motion/react";
 import { useRef, useEffect, useState } from "react";
 import Photo from "./components/Photo";
 // import { Fade, Slide } from "react-awesome-reveal"
@@ -73,19 +73,22 @@ export default function Home() {
       {/* Sticky Bar */}
       <div className="sticky top-0 z-50 bg-white pt-4 px-4">
         <div className="flex justify-between items-center">
+          <AnimatePresence>
+            {!view && (
+              <motion.h1
+                className="text-xl font-bold whitespace-nowrap"
+                initial={{ opacity: 0, y: -20 }} // Initial state
+                animate={{ opacity: 1, y: 0 }} // Animate to this state
+                transition={{ duration: 0.5 }} // Duration of the animation
+                exit={{ opacity: 0, y: -20 }}
+              >
+                matthew kurniawan
+              </motion.h1>
+            )}
+          </AnimatePresence>
 
-          {!view && (
-            <motion.h1
-              className="text-xl font-bold whitespace-nowrap"
-              initial={{ opacity: 0, y: -20 }} // Initial state
-              animate={{ opacity: 1, y: 0 }} // Animate to this state
-              transition={{ duration: 0.5 }} // Duration of the animation
-            >
-              matthew kurniawan
-            </motion.h1>
-          )}
 
-          <nav className="flex space-x-4 items-end w-full justify-end">
+          <nav className={`flex space-x-4 items-end w-full justify-end ${styles.nav}`}>
             <a href="#Cinematography" className="text-gray-700 hover:text-gray-500">Cinematography</a>
             {/* <a href="#section2" className="text-gray-700 hover:text-gray-500">Photography</a> */}
             <a className="text-gray-700 hover:text-gray-500">Chicago, IL</a>
@@ -98,8 +101,17 @@ export default function Home() {
       <div className={styles.landing}>
         <div className={styles.text_container}>
 
+          <div className="text-xl">
+            I'm a Chicago-based filmmaker <br />with a love for <br />interactive media, user experience, and design ⊹₊ ⋆
+          </div>
+
           <div className={styles.landing_text} ref={mkRef}>
-            mk.
+            <div>
+              matthew
+            </div>
+            <div>
+              kurniawan
+            </div>
           </div>
         </div>
         <div className={styles.landing_image_container}>
@@ -136,53 +148,6 @@ export default function Home() {
                 </svg>
               </motion.div>
             </div>
-            {/* <div className="w-1/2 h-1/2">
-
-            </div> */}
-            {/* <div className="p-10 w-full">
-              <div className="flex justify-around my-10 w-full">
-                <Photo
-                  src="/images/theatre.jpg"
-                  alt="temp image"
-                />
-                <Photo
-                  src="/images/vancouver.jpg"
-                  alt="temp image"
-                />
-                <Photo
-                  src="/images/matt_arms.png"
-                  alt="temp image"
-                />
-              </div>
-              <div className="flex justify-around my-10">
-                <Photo
-                  src="/images/val_sit.jpg"
-                  alt="temp image"
-                />
-                <Photo
-                  src="/images/lake.jpg"
-                  alt="temp image"
-                />
-                <Photo
-                  src="/images/bridge.jpg"
-                  alt="temp image"
-                />
-              </div>
-              <div className="flex justify-around my-10">
-                <Photo
-                  src="/images/hands.jpg"
-                  alt="temp image"
-                />
-                <Photo
-                  src="/images/val_eyes.jpg"
-                  alt="temp image"
-                />
-                <Photo
-                  src="/images/skyline.jpg"
-                  alt="temp image"
-                />
-              </div>
-            </div> */}
 
             {/* Bento Grid */}
             <div className="flex justify-center items-center w-full mb-5">
@@ -320,7 +285,7 @@ export default function Home() {
           </div>
 
           <div>
-            Created by Basil Khwaja.
+            Created by <a className="underline underline-offset-2" href="https://www.instagram.com/basil_k07/">Basil Khwaja</a>.
           </div>
         </div>
       </div>
