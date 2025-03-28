@@ -5,10 +5,11 @@ import Carousel from "./components/Carousel";
 import { motion, useInView, AnimatePresence, useScroll, useSpring } from "motion/react";
 import { useRef, useEffect, useState } from "react";
 import Photo from "./components/Photo";
-import { style } from "motion/react-client";
+import { div, style } from "motion/react-client";
 // import { Fade, Slide } from "react-awesome-reveal"
 import AOS from 'aos'
 import 'aos/dist/aos.css'
+import LoadingPage from './components/LoadingPage'
 
 const DATA = [
   { image: '/images/face.png' },
@@ -48,10 +49,10 @@ export default function Home() {
   const videosRef = useRef<HTMLDivElement>(null);
   const [appear, isAppear] = useState(false)
 
-  const mkRef = useRef(null);
+  const mkRef = useRef<HTMLDivElement>(null);
   const view = useInView(mkRef);
-  const cinema = useRef(null)
-  const top = useRef(null)
+  const cinema = useRef<HTMLDivElement>(null)
+  const top = useRef<HTMLDivElement>(null)
 
   const handleClick = () => {
     cinema.current?.scrollIntoView({ behavior: 'smooth' });
@@ -94,8 +95,25 @@ export default function Home() {
     })
   }, [])
 
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false)
+    }, 3000)
+
+    return () => clearTimeout(timer)
+  }, [])
+
   return (
-    <div ref={top}>
+    // <AnimatePresence mode="wait">
+    //   {isLoading ? (
+    //     <LoadingPage key="loading" />
+    //   ) : (
+    <motion.div ref={top} key="main-content"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}>
       <motion.div className="fixed left-7 top-20 bg-gray-300 w-0.5 h-4/5 origin-left" style={{ scaleY, transformOrigin: 'top' }}>
 
       </motion.div>
@@ -352,6 +370,8 @@ export default function Home() {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
+    //   )}
+    // </AnimatePresence>
   );
 }

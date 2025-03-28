@@ -4,6 +4,7 @@ import "./globals.css";
 import styles from "./page.module.css";
 import ParticleBackground from "./components/ParticleBackground";
 
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -24,11 +25,11 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} ${styles.body}`}>
         {children}
-        {/* <ParticleBackground /> */}
       </body>
     </html>
   );
