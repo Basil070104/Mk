@@ -86,7 +86,7 @@ export default function Home() {
           )}
 
           <nav className="flex space-x-4 items-end w-full justify-end">
-            <a href="#section1" className="text-gray-700 hover:text-gray-500">Cinematography</a>
+            <a href="#Cinematography" className="text-gray-700 hover:text-gray-500">Cinematography</a>
             {/* <a href="#section2" className="text-gray-700 hover:text-gray-500">Photography</a> */}
             <a className="text-gray-700 hover:text-gray-500">Chicago, IL</a>
           </nav>
@@ -114,7 +114,7 @@ export default function Home() {
       </div>
 
       {/* Photos */}
-      <div>
+      <div id="Cinematography">
         <div className={`${styles.parallax_image} ${isSticky ? 'sticky top-0 z-10' : ''}`}
           ref={parallaxRef}
         >
@@ -299,16 +299,26 @@ export default function Home() {
       {/* Contact */}
       <div className={styles.footer}>
         <div className={styles.footer_container}>
-          <ul className={styles.contact_info}>
+          <div className={styles.contact_info}>
 
-            <div><a href="https://www.instagram.com/mqtt.k/?utm_source=ig_web_button_share_sheet">Instagram</a></div>
+            <div className="text-left px-4 underline underline-offset-2">
+              <div><a href="https://www.instagram.com/mqtt.k/?utm_source=ig_web_button_share_sheet">Instagram</a></div>
 
 
-            <div> <a href="https://www.youtube.com/@mattkrnwn">Youtube</a></div>
-          </ul>
-          <div>
-            Let's make something together
+              <div> <a href="https://www.youtube.com/@mattkrnwn">Youtube</a></div>
+            </div>
+
+            <div className="flex flex-col text-left px-4">
+              <div>
+                Let's make something together.
+              </div>
+              <div className="underline underline-offset-2">
+                mattkrnwn@gmail.com
+              </div>
+            </div>
+
           </div>
+
           <div>
             Created by Basil Khwaja.
           </div>
