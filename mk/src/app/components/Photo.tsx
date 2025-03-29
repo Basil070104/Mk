@@ -30,10 +30,10 @@ const Photo: React.FC<PhotoProps> = ({ src, alt, title, subheader, className = '
       </motion.div>
 
       <div className='flex-shrink-0 h-fit p-2'>
-        <div className='text-black font-semibold text-lg'>
+        <div className='text-black font-semibold text-2xl'>
           {title}
         </div>
-        <div className='text-gray-700'>
+        <div className='text-gray-700 text-xl'>
           {subheader}
         </div>
       </div>

@@ -1,7 +1,6 @@
 'use client'
 import Image from "next/image";
 import styles from "./page.module.css";
-import Carousel from "./components/Carousel";
 import { motion, useInView, AnimatePresence, useScroll, useSpring } from "motion/react";
 import { useRef, useEffect, useState } from "react";
 import Photo from "./components/Photo";
@@ -100,7 +99,7 @@ export default function Home() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false)
-    }, 3000)
+    }, 2000)
 
     return () => clearTimeout(timer)
   }, [])
@@ -118,11 +117,11 @@ export default function Home() {
 
       </motion.div>
       {/* Sticky Bar */}
-      <div className="sticky top-0 z-50 bg-white pt-4 px-4">
-        <div className="flex justify-between items-center text-xl" >
+      <div className="sticky top-0 z-50 bg-white pt-4 pb-4 flex justify-center items-center">
+        <div className="flex justify-between items-center text-xl w-4/5" >
           <AnimatePresence >
             {!view && (
-              <motion.h1
+              <motion.div
                 className=" font-bold whitespace-nowrap hover:cursor-pointer"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -130,8 +129,8 @@ export default function Home() {
                 exit={{ opacity: 0, y: -20 }}
                 onClick={topClick}
               >
-                matthew kurniawan
-              </motion.h1>
+                mk.
+              </motion.div>
             )}
           </AnimatePresence>
 
@@ -146,35 +145,38 @@ export default function Home() {
       </div>
 
       {/* Landing */}
-      <div className={styles.landing}>
-        <div className={styles.text_container}>
+      <div className="w-full flex justify-center items-center">
+        <div className={styles.landing}>
+          <div className={styles.text_container}>
 
-          <div className={styles.info} data-aos="fade-right">
-            I'm a Chicago-based filmmaker <br />with a love for interactive media, <br />user experience, and design ⊹₊ ⋆
-          </div>
+            <div className={styles.info} data-aos="fade-right">
+              I&apos;m a Chicago-based filmmaker <br />with a love for interactive media, <br />user experience, and design ⊹₊ ⋆
+            </div>
 
-          <div className={styles.landing_text} ref={mkRef} data-aos="fade-right">
-            <div>
-              matthew
-            </div>
-            <div>
-              kurniawan
+            <div className={styles.landing_text} ref={mkRef} data-aos="fade-right">
+              <div>
+                matthew
+              </div>
+              <div>
+                kurniawan
+              </div>
             </div>
           </div>
+          <motion.div className={styles.landing_image_container}
+            initial={{ scale: 1.05 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            <Image
+              src="/images/matt.png"
+              alt="matthew"
+
+              className={styles.landing_image}
+              width={500} // Add required width for Next.js Image
+              height={500} // Add required height for Next.js Image
+            />
+          </motion.div>
         </div>
-        <motion.div className={styles.landing_image_container}
-          initial={{ scale: 1.05 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 0.5 }}
-        >
-          <Image
-            src="/images/matt.png"
-            alt="matthew"
-            className={styles.landing_image}
-            width={800} // Add required width for Next.js Image
-            height={500} // Add required height for Next.js Image
-          />
-        </motion.div>
       </div>
 
       {/* Photos */}
@@ -206,7 +208,7 @@ export default function Home() {
               <div className={styles.grid} >
 
                 <div className="flex flex-col gap-0" >
-                  <div className={styles.box} style={{ gridArea: "box-1", flexGrow: 2 }} data-aos="fade-up">
+                  <div className={styles.box} style={{ gridArea: "box-1", flexGrow: 1 }} data-aos="fade-up">
                     <Photo
                       src="/images/skyline.jpg"
                       alt="temp image"
@@ -216,7 +218,7 @@ export default function Home() {
                   </div>
 
 
-                  <div className={styles.box} style={{ gridArea: "box-2", flexGrow: 2 }} data-aos="fade-up">
+                  <div className={styles.box} style={{ gridArea: "box-2", flexGrow: 1 }} data-aos="fade-up">
                     <Photo
                       src="/images/theatre.jpg"
                       alt="temp image"
@@ -224,7 +226,7 @@ export default function Home() {
                       subheader="Photo"
                     />
                   </div>
-                  <div className={styles.box} style={{ gridArea: "box-3", flexGrow: 3 }} data-aos="fade-up">
+                  <div className={styles.box} style={{ gridArea: "box-3", flexGrow: 1 }} data-aos="fade-up">
                     <Photo
                       src="/images/val_eyes.jpg"
                       alt="temp image"
@@ -232,7 +234,7 @@ export default function Home() {
                       subheader="Photo"
                     />
                   </div>
-                  <div className={styles.box} style={{ gridArea: "box-3", flexGrow: 4 }} data-aos="fade-up">
+                  <div className={styles.box} style={{ gridArea: "box-3", flexGrow: 2 }} data-aos="fade-up">
                     <Photo
                       src="/images/val_sit.jpg"
                       alt="temp image"
@@ -266,7 +268,7 @@ export default function Home() {
                       subheader="Photo"
                     />
                   </div>
-                  <div className={styles.box} style={{ gridArea: "box-7" }} data-aos="fade-up">
+                  {/* <div className={styles.box} style={{ gridArea: "box-7" }} data-aos="fade-up">
                     <Photo
                       src="/images/stage.png"
                       alt="temp image"
@@ -281,7 +283,7 @@ export default function Home() {
                       title="person"
                       subheader="Photo"
                     />
-                  </div>
+                  </div> */}
                 </div>
                 <div className="flex flex-col gap-0">
                   <div className={styles.box} style={{ gridArea: "box-8", flexGrow: 2 }} data-aos="fade-up">
@@ -292,7 +294,7 @@ export default function Home() {
                       subheader="Photo"
                     />
                   </div>
-                  <div className={styles.box} style={{ gridArea: "box-9", flexGrow: 7 }} data-aos="fade-up">
+                  <div className={styles.box} style={{ gridArea: "box-9", flexGrow: 4 }} data-aos="fade-up">
                     <Photo
                       src="/images/lake.jpg"
                       alt="temp image"
@@ -308,14 +310,14 @@ export default function Home() {
                       subheader="Photo"
                     />
                   </div>
-                  <div className={styles.box} style={{ gridArea: "box-10", flexGrow: 1 }} data-aos="fade-up">
+                  {/* <div className={styles.box} style={{ gridArea: "box-10", flexGrow: 1 }} data-aos="fade-up">
                     <Photo
                       src="/images/josh.png"
                       alt="temp image"
                       title="person"
                       subheader="Photo"
                     />
-                  </div>
+                  </div> */}
                 </div>
               </div>
 
@@ -354,9 +356,9 @@ export default function Home() {
               <div> <a href="https://www.youtube.com/@mattkrnwn" target="_blank">Youtube</a></div>
             </div>
 
-            <div className="flex flex-col text-left px-4">
+            <div className="flex flex-col text-left">
               <div>
-                Let's make something together.
+                Let&apos;s make something together.
               </div>
               <div className="underline underline-offset-2">
                 mattkrnwn@gmail.com
