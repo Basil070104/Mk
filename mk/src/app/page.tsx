@@ -10,44 +10,15 @@ import AOS from 'aos'
 import 'aos/dist/aos.css'
 import LoadingPage from './components/LoadingPage'
 
-const DATA = [
-  { image: '/images/face.png' },
-  { image: '/images/hot_matt.png' },
-  { image: '/images/josh.png' },
-  { image: '/images/light.png' },
-  { image: '/images/stage.png' },
-  { image: '/images/val.png' }
-]
-
 export default function Home() {
 
   const ref = useRef(null);
   const inView = useInView(ref)
 
-  const changeSlide = (n: number) => {
-    console.log(`Changing slide by ${n}`);
-  };
-
-  const variants = {
-    hidden: {
-      y: 50,
-      opacity: 0
-    },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut",
-      }
-    }
-  };
 
   const [isSticky, setIsSticky] = useState(false);
   const parallaxRef = useRef<HTMLDivElement>(null);
   const videosRef = useRef<HTMLDivElement>(null);
-  const [appear, isAppear] = useState(false)
-
   const mkRef = useRef<HTMLDivElement>(null);
   const view = useInView(mkRef);
   const cinema = useRef<HTMLDivElement>(null)
@@ -117,7 +88,7 @@ export default function Home() {
 
       </motion.div>
       {/* Sticky Bar */}
-      <div className="sticky top-0 z-50 bg-white pt-4 pb-4 flex justify-center items-center">
+      <div className="sticky top-0 z-50 bg-white pt-4 pb-4 flex justify-center items-center border-b-black">
         <div className="flex justify-between items-center text-xl w-4/5" >
           <AnimatePresence >
             {!view && (
@@ -210,10 +181,11 @@ export default function Home() {
                 <div className="flex flex-col gap-0" >
                   <div className={styles.box} style={{ gridArea: "box-1", flexGrow: 1 }} data-aos="fade-up">
                     <Photo
-                      src="/images/skyline.jpg"
+                      src="/videos/petrichor.mp4"
                       alt="temp image"
                       title="skyline"
                       subheader="Photo"
+                      video={true}
                     />
                   </div>
 
@@ -236,11 +208,15 @@ export default function Home() {
                   </div>
                   <div className={styles.box} style={{ gridArea: "box-3", flexGrow: 2 }} data-aos="fade-up">
                     <Photo
-                      src="/images/val_sit.jpg"
+                      src="/videos/WF.mov"
                       alt="temp image"
                       title="person"
                       subheader="Photo"
+                      video={true}
                     />
+                    {/* <video loop muted autoPlay width="100%">
+                      <source src="/videos/WF.mov" type="video/mp4" />
+                    </video> */}
                   </div>
                 </div>
                 <div className="flex flex-col gap-0">
@@ -254,10 +230,11 @@ export default function Home() {
                   </div>
                   <div className={styles.box} style={{ gridArea: "box-5" }} data-aos="fade-up">
                     <Photo
-                      src="/images/bridge.jpg"
+                      src="/videos/What you want.mov"
                       alt="temp image"
                       title="person"
                       subheader="Photo"
+                      video={true}
                     />
                   </div>
                   <div className={styles.box} style={{ gridArea: "box-6" }} data-aos="fade-up">
