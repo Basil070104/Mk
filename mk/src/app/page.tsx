@@ -145,6 +145,7 @@ export default function Home() {
               className={styles.landing_image}
               width={500} // Add required width for Next.js Image
               height={500} // Add required height for Next.js Image
+              style={{ width: '100%' }}
             />
           </motion.div>
         </div>
@@ -230,7 +231,7 @@ export default function Home() {
                   </div>
                   <div className={styles.box} style={{ gridArea: "box-5" }} data-aos="fade-up">
                     <Photo
-                      src="/videos/What you want.mov"
+                      src="/videos/WYW.mp4"
                       alt="temp image"
                       title="person"
                       subheader="Photo"
